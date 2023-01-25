@@ -19,23 +19,29 @@ function playRound(playerSelection, computerSelection) {
         if (computerSelection === "rock") {
             console.log("It is a tie...you both chose Rock!");
         } else if (computerSelection === "paper") {
-            console.log("You lose!  Paper beats Rock!")
+            console.log("The computer gets a point!  Paper beats Rock!")
+            return computerCounter++;
         } else {
-            console.log("You win!  Rock beats Scissors!");
+            console.log("You get a point!  Rock beats Scissors!");
+            return playerCounter++;
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
-            console.log("You win!  Paper beats Rock!");
+            console.log("You get a point!  Paper beats Rock!");
+            return playerCounter++;
         } else if (computerSelection === "paper") {
             console.log("It is a tie...you both chose Paper!");
         } else {
-            console.log("You lose!  Scissors beats Paper!");
+            console.log("The computer gets a point!  Scissors beats Paper!");
+            return computerCounter++;
         }    
     } else if (playerSelection === "scissors") {
         if (computerSelection === "rock") {
-            console.log("You lose!  Rock beats Scissors!");
+            console.log("The computer gets a point!  Rock beats Scissors!");
+            return computerCounter++;
         } else if (computerSelection === "paper") {
-            console.log("You win!  Scissors beats Paper!");
+            console.log("You get a point!  Scissors beats Paper!");
+            return playerCounter++;
         } else {
             console.log("It is a tie...you both chose Scissors!");
         }
@@ -49,14 +55,20 @@ function game() {
         const playerSelection = prompt("make your choice: ", "Rock, paper, or scissors");
         const computerSelection = getComputerChoice();
         playRound(playerSelection, computerSelection);
+        console.log(`Your score is ${playerCounter}.  The computer's score is ${computerCounter}`);
     }
-    //console.log(playRound(playerSelection, computerSelection));
+    if (playerCounter > computerCounter) {
+        console.log(`YOU WIN!  The final score is ${playerCounter} to ${computerCounter}`);
+    } else if (computerCounter > playerCounter) {
+        console.log(`YOU LOSE!  The final score is ${playerCounter} to ${computerCounter}`);
+    } else {
+        console.log(`It is a tie!`);
+    }
 }
 
 // Initializing constants 
 
-//const playerSelection = prompt("make your choice: ", "Rock, paper, or scissors");
+let computerCounter = 0;
+let playerCounter = 0;
 
-//const computerSelection = getComputerChoice();
-
-game();
+game(computerCounter, playerCounter);
