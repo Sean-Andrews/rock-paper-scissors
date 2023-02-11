@@ -9,6 +9,12 @@ const results = document.querySelector("#results");
 let computerCounter = 0;
 let playerCounter = 0;
 
+let playerScore = document.querySelector('#player-score');
+let computerScore = document.querySelector('#computer-score');
+
+playerScore.textContent = "The player currently has 0 points";
+computerScore.textContent = "The computer currently has 0 points";
+
 // Button functionality
 
 rock.addEventListener('click', () => {
@@ -45,32 +51,44 @@ function playRound(playerSelection, computerSelection) {
             results.textContent = "It is a tie...you both chose Rock!";
         } else if (computerSelection === "paper") {
             results.textContent = "The computer gets a point!  Paper beats Rock!";
-            return computerCounter++;
+            computerCounter++;
         } else {
             results.textContent = "You get a point!  Rock beats Scissors!";
-            return playerCounter++;
+            playerCounter++;
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
             results.textContent = "You get a point!  Paper beats Rock!";
-            return playerCounter++;
+            playerCounter++;
         } else if (computerSelection === "paper") {
             results.textContent = "It is a tie...you both chose Paper!";
         } else {
             results.textContent = "The computer gets a point!  Scissors beats Paper!";
-            return computerCounter++;
+            computerCounter++;
         }    
     } else if (playerSelection === "scissors") {
         if (computerSelection === "rock") {
             results.textContent = "The computer gets a point!  Rock beats Scissors!";
-            return computerCounter++;
+            computerCounter++;
         } else if (computerSelection === "paper") {
             results.textContent = "You get a point!  Scissors beats Paper!";
-            return playerCounter++;
+            playerCounter++;
         } else {
             results.textContent = "It is a tie...you both chose Scissors!";
         }
     } 
+    updateScore(playerCounter, computerCounter);
+}
+
+function updateScore(playerCounter, computerCounter) {
+    if (playerCounter === 1) {
+        playerScore.textContent = "You now have 1 point!";
+    } else if (computerCounter === 1) {
+        computerScore.textContent = "The computer now has 1 point!";
+    } else {
+        playerScore.textContent = `You now have ${playerCounter} points!`;
+        computerScore.textContent = `The computer now has ${computerCounter} points!`;
+    }
 }
 
 // This function plays a 5 round game
