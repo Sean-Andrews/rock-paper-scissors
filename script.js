@@ -1,3 +1,28 @@
+// Initializing variables
+
+
+const rock = document.querySelector("#rock-btn");
+const paper = document.querySelector("#paper-btn");
+const scissors = document.querySelector("#scissors-btn");
+
+let computerCounter = 0;
+let playerCounter = 0;
+
+// Button functionality
+
+rock.addEventListener('click', () => {
+    playRound('rock', getComputerChoice());
+});
+
+paper.addEventListener('click', () => {
+    playRound('paper', getComputerChoice());
+});
+
+scissors.addEventListener('click', () => {
+    playRound('scissors', getComputerChoice());
+});
+
+
 // This function simulates the computers choice
 
 function getComputerChoice() {
@@ -14,7 +39,6 @@ function getComputerChoice() {
 // This function plays a single round and tallies score
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase();
     if (playerSelection === "rock") {
         if (computerSelection === "rock") {
             console.log("It is a tie...you both chose Rock!");
@@ -66,9 +90,4 @@ function game() {
     }
 }
 
-// Initializing constants 
-
-let computerCounter = 0;
-let playerCounter = 0;
-
-game(computerCounter, playerCounter);
+// game(computerCounter, playerCounter);
