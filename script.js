@@ -11,6 +11,7 @@ let playerCounter = 0;
 
 let playerScore = document.querySelector('#player-score');
 let computerScore = document.querySelector('#computer-score');
+let winner = document.querySelector('#winner-announcement');
 
 playerScore.textContent = "The player currently has 0 points";
 computerScore.textContent = "The computer currently has 0 points";
@@ -81,7 +82,11 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function updateScore(playerCounter, computerCounter) {
-    if (playerCounter === 1) {
+    if (playerCounter === 5) {
+        winner.textContent = "Congratulations!  You beat the computer!";
+    } else if (computerCounter === 5) {
+        winner.textContent = "Too bad!  The computer beat you!";
+    } else if (playerCounter === 1) {
         playerScore.textContent = "You now have 1 point!";
     } else if (computerCounter === 1) {
         computerScore.textContent = "The computer now has 1 point!";
