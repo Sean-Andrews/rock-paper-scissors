@@ -4,6 +4,7 @@
 const rock = document.querySelector("#rock-btn");
 const paper = document.querySelector("#paper-btn");
 const scissors = document.querySelector("#scissors-btn");
+const results = document.querySelector("#results");
 
 let computerCounter = 0;
 let playerCounter = 0;
@@ -41,33 +42,33 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === "rock") {
         if (computerSelection === "rock") {
-            console.log("It is a tie...you both chose Rock!");
+            results.textContent = "It is a tie...you both chose Rock!";
         } else if (computerSelection === "paper") {
-            console.log("The computer gets a point!  Paper beats Rock!")
+            results.textContent = "The computer gets a point!  Paper beats Rock!";
             return computerCounter++;
         } else {
-            console.log("You get a point!  Rock beats Scissors!");
+            results.textContent = "You get a point!  Rock beats Scissors!";
             return playerCounter++;
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
-            console.log("You get a point!  Paper beats Rock!");
+            results.textContent = "You get a point!  Paper beats Rock!";
             return playerCounter++;
         } else if (computerSelection === "paper") {
-            console.log("It is a tie...you both chose Paper!");
+            results.textContent = "It is a tie...you both chose Paper!";
         } else {
-            console.log("The computer gets a point!  Scissors beats Paper!");
+            results.textContent = "The computer gets a point!  Scissors beats Paper!";
             return computerCounter++;
         }    
     } else if (playerSelection === "scissors") {
         if (computerSelection === "rock") {
-            console.log("The computer gets a point!  Rock beats Scissors!");
+            results.textContent = "The computer gets a point!  Rock beats Scissors!";
             return computerCounter++;
         } else if (computerSelection === "paper") {
-            console.log("You get a point!  Scissors beats Paper!");
+            results.textContent = "You get a point!  Scissors beats Paper!";
             return playerCounter++;
         } else {
-            console.log("It is a tie...you both chose Scissors!");
+            results.textContent = "It is a tie...you both chose Scissors!";
         }
     } 
 }
