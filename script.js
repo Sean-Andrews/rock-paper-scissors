@@ -6,15 +6,21 @@ const paper = document.querySelector("#paper-btn");
 const scissors = document.querySelector("#scissors-btn");
 const results = document.querySelector("#results");
 
-let computerCounter = 0;
-let playerCounter = 0;
-
 let playerScore = document.querySelector('#player-score');
 let computerScore = document.querySelector('#computer-score');
 let winner = document.querySelector('#winner-announcement');
 
-playerScore.textContent = "The player currently has 0 points";
-computerScore.textContent = "The computer currently has 0 points";
+let computerCounter = 0;
+let playerCounter = 0;
+
+function startGame() {
+    computerCounter = 0;
+    playerCounter = 0;
+    playerScore.textContent = "The player currently has 0 points";
+    computerScore.textContent = "The computer currently has 0 points";
+}
+
+startGame();
 
 // Button functionality
 
@@ -56,18 +62,18 @@ function playRound(playerSelection, computerSelection) {
         } else {
             results.textContent = "You get a point!  Rock beats Scissors!";
             playerCounter++;
-        }
-    } else if (playerSelection === "paper") {
+        } 
+    }   else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
             results.textContent = "You get a point!  Paper beats Rock!";
             playerCounter++;
-        } else if (computerSelection === "paper") {
-            results.textContent = "It is a tie...you both chose Paper!";
-        } else {
-            results.textContent = "The computer gets a point!  Scissors beats Paper!";
+        } else if (computerSelection === "scissors") {
+            results.textContent = "The computer gets a point!  Scissors beats paper!";
             computerCounter++;
-        }    
-    } else if (playerSelection === "scissors") {
+        } else {
+            results.textContent = "It is a tie...you both chose Paper!";
+        }
+     }  else if (playerSelection === "scissors") {
         if (computerSelection === "rock") {
             results.textContent = "The computer gets a point!  Rock beats Scissors!";
             computerCounter++;
@@ -81,12 +87,10 @@ function playRound(playerSelection, computerSelection) {
     updateScore(playerCounter, computerCounter);
 }
 
+// This function updates the score
+
 function updateScore(playerCounter, computerCounter) {
-    if (playerCounter === 5) {
-        winner.textContent = "Congratulations!  You beat the computer!";
-    } else if (computerCounter === 5) {
-        winner.textContent = "Too bad!  The computer beat you!";
-    } else if (playerCounter === 1) {
+    if (playerCounter === 1) {
         playerScore.textContent = "You now have 1 point!";
     } else if (computerCounter === 1) {
         computerScore.textContent = "The computer now has 1 point!";
@@ -94,24 +98,15 @@ function updateScore(playerCounter, computerCounter) {
         playerScore.textContent = `You now have ${playerCounter} points!`;
         computerScore.textContent = `The computer now has ${computerCounter} points!`;
     }
+    checkWinner(playerCounter, computerCounter);
 }
 
-// This function plays a 5 round game
-
-function game() {
-    for (let i = 1; i <= 5; i++) {
-        const playerSelection = prompt("make your choice: ", "Rock, paper, or scissors");
-        const computerSelection = getComputerChoice();
-        playRound(playerSelection, computerSelection);
-        console.log(`Your score is ${playerCounter}.  The computer's score is ${computerCounter}`);
-    }
-    if (playerCounter > computerCounter) {
-        console.log(`YOU WIN!  The final score is ${playerCounter} to ${computerCounter}`);
-    } else if (computerCounter > playerCounter) {
-        console.log(`YOU LOSE!  The final score is ${playerCounter} to ${computerCounter}`);
-    } else {
-        console.log(`It is a tie!`);
+function checkWinner(playerCounter, computerCounter) {
+    if (playerCounter === 5) {
+        winner.textContent = "Congratulations!  You beat the computer!";
+        startGame();
+    } else if (computerCounter === 5) {
+        winner.textContent = "Too bad!  The computer beat you!";
+        startGame();
     }
 }
-
-// game(computerCounter, playerCounter);
