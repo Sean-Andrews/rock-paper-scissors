@@ -1,7 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    border: 1px solid white;
 }
 
 body {
@@ -17,7 +16,7 @@ body {
 
 #title h3 {
     color: #d70e0e;
-    margin-top: 5px;
+    margin-top: -5px;
 }
 
 #title h6 {
@@ -49,8 +48,19 @@ body {
     gap: 20px;
 }
 
-p {
+#player-score-area, #computer-score-area {
+    text-align: center;
     width: 15%;
+    border: 1px dashed red;
+}
+
+#player-score-area p, #computer-score-area p {
+    margin-top: 25px;
+}
+
+#player-score, #computer-score {
+    color: red;
+    font-size: 32px;
 }
 
 button {
@@ -66,5 +76,17 @@ button {
 
 #winner-announcement {
     font-size: 32px;
+    color: red;
+}
+
+#results {
+    font-size: 24px;
+}
+
+.play-again-btn {
+    display: block;
+    font-size: 12px;
+    margin: 0 auto;
+    width: 100px;
 }
 

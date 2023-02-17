@@ -17,7 +17,10 @@
         <h6>Do you have what it takes?</h6>
     </div>
     <div id="game-area">
-        <p id="player-score">Your Score Is: </p>
+        <div id="player-score-area">
+            <p>Your Score: </p>
+            <p id="player-score"></p>
+        </div>    
         <div id="choose-btn">
             <h3>Make your selection</h3>
             <div id="btn-container">
@@ -26,12 +29,16 @@
                 <button id="scissors-btn">Scissors</button>
             </div>    
         </div>
-        <p id="computer-score">The Computer's Score Is: </p>    
+        <div id="computer-score-area">
+            <p>Their Score: </p>
+            <p id="computer-score"></p>
+        </div>        
     </div>
     <div id="results-area">
         <p id="results"></p>
         <p id="winner-announcement"></p>
     </div>
+    
 
 
     <script src="script.js"></script>    

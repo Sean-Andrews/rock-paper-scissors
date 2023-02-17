@@ -1,6 +1,5 @@
 // Initializing variables
 
-
 const rock = document.querySelector("#rock-btn");
 const paper = document.querySelector("#paper-btn");
 const scissors = document.querySelector("#scissors-btn");
@@ -10,31 +9,40 @@ let playerScore = document.querySelector('#player-score');
 let computerScore = document.querySelector('#computer-score');
 let winner = document.querySelector('#winner-announcement');
 
-let computerCounter = 0;
-let playerCounter = 0;
+let computerCounter;
+let playerCounter;
 
 function startGame() {
     computerCounter = 0;
     playerCounter = 0;
-    playerScore.textContent = "The player currently has 0 points";
-    computerScore.textContent = "The computer currently has 0 points";
+    playerScore.textContent = "0";
+    computerScore.textContent = "0";
+    results.textContent = "";
+    winner.textContent = "";
+    addButtonFunctions();
 }
 
 startGame();
 
 // Button functionality
 
-rock.addEventListener('click', () => {
+function addButtonFunctions() {
+    rock.addEventListener('click', rockChoice);
+    paper.addEventListener('click', paperChoice);
+    scissors.addEventListener('click', scissorsChoice);
+}
+
+function rockChoice() {
     playRound('rock', getComputerChoice());
-});
+}
 
-paper.addEventListener('click', () => {
+function paperChoice() {
     playRound('paper', getComputerChoice());
-});
+}
 
-scissors.addEventListener('click', () => {
+function scissorsChoice() {
     playRound('scissors', getComputerChoice());
-});
+}
 
 
 // This function simulates the computers choice
@@ -90,23 +98,37 @@ function playRound(playerSelection, computerSelection) {
 // This function updates the score
 
 function updateScore(playerCounter, computerCounter) {
-    if (playerCounter === 1) {
-        playerScore.textContent = "You now have 1 point!";
-    } else if (computerCounter === 1) {
-        computerScore.textContent = "The computer now has 1 point!";
-    } else {
-        playerScore.textContent = `You now have ${playerCounter} points!`;
-        computerScore.textContent = `The computer now has ${computerCounter} points!`;
-    }
+    playerScore.textContent = `${playerCounter}`;
+    computerScore.textContent = `${computerCounter}`;
     checkWinner(playerCounter, computerCounter);
 }
 
 function checkWinner(playerCounter, computerCounter) {
     if (playerCounter === 5) {
         winner.textContent = "Congratulations!  You beat the computer!";
-        startGame();
+        removeButtonFunctions();
+        playAgain();
     } else if (computerCounter === 5) {
         winner.textContent = "Too bad!  The computer beat you!";
-        startGame();
+        removeButtonFunctions();
+        playAgain();
     }
+}
+
+// This function creates a play again button
+
+function playAgain() {
+    let playAgainBtn = document.createElement('button');
+    playAgainBtn.textContent = "Play Again?";
+    playAgainBtn.className = "play-again-btn";
+    winner.appendChild(playAgainBtn);
+    playAgainBtn.addEventListener('click', function() {
+        startGame();
+    })
+}
+
+function removeButtonFunctions() {
+    rock.removeEventListener('click', rockChoice);
+    paper.removeEventListener('click', paperChoice);
+    scissors.removeEventListener('click', scissorsChoice);
 }
